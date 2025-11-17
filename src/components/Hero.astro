@@ -15,6 +15,7 @@ interface Props {
   title: string;
   subtitle: string;
   description: string;
+  bullets?: string[];
   primaryCta: CTA;
   secondaryCta?: CTA;
   stats?: Stat[];
@@ -25,6 +26,7 @@ const {
   title,
   subtitle,
   description,
+  bullets = [],
   primaryCta,
   secondaryCta,
   stats = []
@@ -42,6 +44,13 @@ const {
       <a class="btn primary" href={primaryCta.href}>{primaryCta.label}</a>
       {secondaryCta && <a class="btn secondary" href={secondaryCta.href}>{secondaryCta.label}</a>}
     </div>
+    {bullets.length > 0 && (
+      <ul class="hero__bullets">
+        {bullets.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )}
     {stats.length > 0 && (
       <div class="hero__stats">
         {stats.map((stat) => (
@@ -114,6 +123,33 @@ const {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+  }
+
+  .hero__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .hero__bullets li {
+    padding-left: 1.25rem;
+    position: relative;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .hero__bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(120deg, #7f5cff, #20e3b2);
   }
 
   .btn {

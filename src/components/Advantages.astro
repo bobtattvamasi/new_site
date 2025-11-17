@@ -1,0 +1,61 @@
+---
+interface Advantage {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: Advantage[];
+}
+
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="advantages" id="advantages">
+  <div class="section-heading">
+    <p class="eyebrow">{subtitle}</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="advantages__grid">
+    {items.map((item) => (
+      <article>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .advantages {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .advantages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  article {
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(9, 12, 28, 0.85);
+    min-height: 180px;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+  }
+</style>

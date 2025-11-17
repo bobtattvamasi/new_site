@@ -1,0 +1,128 @@
+<section class="contact" id="contact">
+  <div class="contact__card">
+    <p class="eyebrow">Контакты</p>
+    <h2>Богдан — главный по запуску и поддержке</h2>
+    <p>
+      Пиши в Telegram или на почту, расскажи пару слов о задаче, дедлайне и бюджете. Ответим с
+      планом и оценкой без маркетинговых кругов ада.
+    </p>
+    <div class="contact__info">
+      <div>
+        <span>Telegram</span>
+        <a href="https://t.me/bogdan_galay" target="_blank" rel="noreferrer">@bogdan_galay</a>
+      </div>
+      <div>
+        <span>Email</span>
+        <a href="mailto:galaybob@gmail.com">galaybob@gmail.com</a>
+      </div>
+    </div>
+  </div>
+  <form class="contact__form">
+    <label>
+      Имя
+      <input type="text" name="name" placeholder="Как к вам обращаться" />
+    </label>
+    <label>
+      Email или Telegram
+      <input type="text" name="contact" placeholder="name@company.com / @nickname" />
+    </label>
+    <label>
+      Бюджет
+      <select name="budget">
+        <option value="">
+          Выберите диапазон
+        </option>
+        <option value="200-400">200–400 тыс ₽</option>
+        <option value="400-800">400–800 тыс ₽</option>
+        <option value="800+">800 тыс ₽ и выше</option>
+      </select>
+    </label>
+    <label>
+      Описание задачи
+      <textarea name="brief" placeholder="Что за сайт, какие сроки, что важно?" rows="4"></textarea>
+    </label>
+    <button type="submit">Отправить бриф</button>
+  </form>
+</section>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .contact__card {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(9, 12, 26, 0.9), rgba(32, 227, 178, 0.08));
+  }
+
+  h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+  }
+
+  .contact__info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact__info span {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .contact__info a {
+    font-size: 1rem;
+  }
+
+  .contact__form {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(7, 10, 22, 0.9);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  input,
+  select,
+  textarea {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(120deg, #7f5cff, #20e3b2);
+    color: #05050b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    cursor: pointer;
+  }
+</style>
