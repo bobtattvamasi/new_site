@@ -1,0 +1,74 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+  tag: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: Feature[];
+}
+
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="features" id="benefits">
+  <div class="section-heading">
+    <p class="eyebrow">{subtitle}</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="features__grid">
+    {items.map((feature) => (
+      <article class="feature-card">
+        <span class="feature-card__tag">{feature.tag}</span>
+        <h3>{feature.title}</h3>
+        <p>{feature.description}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 13, 28, 0.7);
+    box-shadow: 0 25px 60px rgba(5, 6, 15, 0.4);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature-card__tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--color-accent-soft, #9ec8ff);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .feature-card p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+</style>

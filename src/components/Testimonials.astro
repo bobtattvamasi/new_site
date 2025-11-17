@@ -1,0 +1,73 @@
+---
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: Testimonial[];
+}
+
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="testimonials" id="testimonials">
+  <div class="section-heading">
+    <p class="eyebrow">{subtitle}</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="testimonials__grid">
+    {items.map((item) => (
+      <article class="testimonial-card">
+        <p class="testimonial-card__quote">“{item.quote}”</p>
+        <p class="testimonial-card__author">{item.name}</p>
+        <p class="testimonial-card__role">{item.role}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(13, 16, 32, 0.9);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .testimonial-card__quote {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+  }
+
+  .testimonial-card__author {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .testimonial-card__role {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+interface CaseStudy {
+  title: string;
+  sector: string;
+  description: string;
+  result: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: CaseStudy[];
+}
+
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="cases" id="cases">
+  <div class="section-heading">
+    <p class="eyebrow">{subtitle}</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="cases__grid">
+    {items.map((item) => (
+      <article class="case-card">
+        <div class="case-card__visual" role="img" aria-label={`Коллаж по проекту ${item.title}`}></div>
+        <div class="case-card__body">
+          <p class="case-card__sector">{item.sector}</p>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <p class="case-card__result">{item.result}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .cases {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .cases__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .case-card {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(8, 10, 22, 0.9);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+  }
+
+  .case-card__visual {
+    background: linear-gradient(135deg, rgba(61, 215, 183, 0.5), rgba(127, 92, 255, 0.45));
+    min-height: 180px;
+  }
+
+  .case-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .case-card__sector {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .case-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .case-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .case-card__result {
+    color: #20e3b2;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+</style>

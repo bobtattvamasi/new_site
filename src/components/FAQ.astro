@@ -1,0 +1,70 @@
+---
+interface QA {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: QA[];
+}
+
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="faq" id="faq">
+  <div class="section-heading">
+    <p class="eyebrow">{subtitle}</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="faq__list">
+    {items.map((item) => (
+      <details>
+        <summary>{item.question}</summary>
+        <p>{item.answer}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  details {
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.25rem 1.5rem;
+    background: rgba(10, 12, 24, 0.9);
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    outline: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] {
+    border-color: rgba(32, 227, 178, 0.4);
+    box-shadow: 0 25px 60px rgba(5, 6, 15, 0.45);
+  }
+
+  details p {
+    margin: 0.75rem 0 0;
+    color: rgba(255, 255, 255, 0.75);
+  }
+</style>

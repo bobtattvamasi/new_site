@@ -1,177 +1,192 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Capabilities from '../components/Capabilities.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import Pricing from '../components/Pricing.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
 
-const highlights = [
-  {
-    title: 'Чистая архитектура',
-    body: 'Astro + TypeScript, никакого бандла React до тех пор, пока он реально не нужен.'
-  },
-  {
-    title: 'Готовность к Supabase',
-    body: 'Вынесенные env-переменные + строгие типы для будущих серверных хендлеров.'
-  },
-  {
-    title: 'Молниеносный билд',
-    body: 'PNPM + Astro 4 = dev-сервер поднимается за секунды, деплой на Vercel без плясок.'
-  }
-];
+const hero = {
+  badge: 'ai creative lab',
+  title: 'Делаем цифровые продукты, которые ощущаются созданными человеком, а усиливаются AI.',
+  subtitle: 'От идеи и нарратива до UI, пайплайнов генерации и измеримых метрик вовлечения.',
+  description:
+    'Veonix вдохновляет на яркое оформление, syntx.ai — на технологичную подачу. Мы балансируем оба подхода: создаём визуал, который продаёт, и подключаем AI-инструменты без боли для команды.',
+  primaryCta: { label: 'Обсудить бриф', href: '#contact', variant: 'primary' },
+  secondaryCta: { label: 'Смотреть формат работы', href: '#pricing', variant: 'secondary' },
+  stats: [
+    { label: 'запуски за прошлый год', value: '28' },
+    { label: 'средний uplift конверсии', value: '+34%' },
+    { label: 'экономия на ручной рутине', value: '72ч/мес' }
+  ]
+};
 
-const checklist = [
-  'Базовый layout с Header/Footer компонентами',
-  'Резиновые секции под услуги, процесс и CTA',
-  '0 лишних демо-страниц — только index.astro'
-];
+const featureSection = {
+  title: 'Собираем стратегию, визуал и AI-операции в один спринт',
+  subtitle: 'Что отличает нас',
+  items: [
+    {
+      tag: 'Стратегия',
+      title: 'Глубокий воркшоп и позиционирование',
+      description: 'Вытаскиваем ДНК бренда, определяем ключевые поводы доверять и превращаем это в скрипты UI и контента.'
+    },
+    {
+      tag: 'Продукт',
+      title: 'Дизайн-системы и модульные блоки',
+      description: 'Та же чистая типографика, что у veonix, но адаптированная под реализацию в Astro + React islands.'
+    },
+    {
+      tag: 'AI',
+      title: 'Гибкие пайплайны',
+      description: 'Оцифровываем ручные процессы: от генерации иллюстраций до автоподготовки персонализированных текстов.'
+    }
+  ]
+};
+
+const capabilities = {
+  title: 'Все критичные артефакты в одном пакете',
+  subtitle: 'Что внутри спринта',
+  items: [
+    {
+      badge: 'CX map',
+      title: 'Продуктовый сториборд',
+      description: 'Последовательность сценариев и точек контакта, которую потом превращаем в лендинг.'
+    },
+    {
+      badge: 'AI toolkit',
+      title: 'Подключение моделей',
+      description: 'Midjourney / SDXL / GPT-4o / собственные LoRA с инструкциями по промтам и гарантиям качества.'
+    },
+    {
+      badge: 'Automation',
+      title: 'Ноутбуки и вебхуки',
+      description: 'Собираем Supabase + edge-функции для форм, CRM-интеграций и уведомлений.'
+    },
+    {
+      badge: 'Content ops',
+      title: 'Контентные шаблоны',
+      description: 'Блоки для блогов, кейсов и roadmap — всё совместимо с Astro Collections.'
+    }
+  ]
+};
+
+const cases = {
+  title: 'Показываем технологичность цифрами',
+  subtitle: 'Кейсы',
+  items: [
+    {
+      title: 'AI-ассистент для финтех-банка',
+      sector: 'Fintech',
+      description: 'Построили сценарии onboarding, собрали UI из модулей, обучили GPT-задачи в домене клиента.',
+      result: '+41% к заявкам на пилот'
+    },
+    {
+      title: 'Digital-стенд для индустриальной выставки',
+      sector: 'Industry',
+      description: 'Сгенерировали визуальные сюжеты, настроили edge-функции для обработки лидов без участия CMS.',
+      result: '−5 дней на подготовку демо'
+    },
+    {
+      title: 'Marketplace контента для edtech',
+      sector: 'Edtech',
+      description: 'Автоматизировали выпуск карточек курсов, прописали tone of voice и собрали витрину на Astro.',
+      result: '+18% к среднему чеку'
+    }
+  ]
+};
+
+const plans = {
+  title: 'Форматы сотрудничества',
+  subtitle: 'Гибко под задачу',
+  plans: [
+    {
+      name: 'Discovery',
+      description: '2-недельная проработка гипотез, визуала и AI-стека — идеально для раннего старта.',
+      price: 'от 180k ₽',
+      perks: ['1 воркшоп + 2 демо', 'Базовый лендинг на Astro', 'Чек-лист AI-инструментов'],
+      cta: 'Забронировать слот'
+    },
+    {
+      name: 'Product Sprint',
+      badge: 'Популярно',
+      description: 'Полный цикл: дизайн-система, инфоструктура, Supabase, подготовка контента.',
+      price: 'от 420k ₽',
+      perks: [
+        'UI-кит + адаптивные блоки',
+        'Подключение Supabase, форм и аутентификации',
+        'Автогенерация иллюстраций/текстов'
+      ],
+      cta: 'Запросить смету'
+    },
+    {
+      name: 'Growth Care',
+      description: 'Ежемесячная поддержка: новые секции, ML-эксперименты, отчётность.',
+      price: 'от 120k ₽ / мес',
+      perks: ['Дедикейтед команда 40ч', 'Эксперименты с LLM', 'Дашборды и аналитику'],
+      cta: 'Получить предложение'
+    }
+  ]
+};
+
+const testimonials = {
+  title: 'Нам доверяют команды, которые ценят скорость и эстетику',
+  subtitle: 'Отзывы',
+  items: [
+    {
+      quote:
+        'Ребята перепридумали наш корпоративный сайт за 3 недели и собрали пайплайн генераций для маркетинга. Сейчас обновляемся раз в несколько дней без боли.',
+      name: 'Алёна Степанова',
+      role: 'CMO, fintech start-up'
+    },
+    {
+      quote: 'Устроили воркшоп, собрали тезисы, сделали кейс-витрину и настроили Supabase без отдельной бэкенд-команды.',
+      name: 'Дмитрий Лебедев',
+      role: 'COO, industrial robotics'
+    },
+    {
+      quote:
+        'Их подход похож на syntx.ai: много технологичного контента, но при этом визуал не холодный, а живой.',
+      name: 'Света Романова',
+      role: 'Founder, edtech-компания'
+    }
+  ]
+};
+
+const faq = {
+  title: 'Частые вопросы',
+  subtitle: 'FAQ',
+  items: [
+    {
+      question: 'Как вы работаете с реальными данными и безопасностью?',
+      answer: 'Настраиваем Supabase, разделяем публичные и сервисные ключи, подписываем NDA и проводим ревью всех промтов / пайплайнов.'
+    },
+    {
+      question: 'Что нужно от нас на старте?',
+      answer: '1-2 часа на интервью, доступы к существующим материалам и понимание KPI. Всё остальное — на нашей стороне.'
+    },
+    {
+      question: 'Можно ли подключить вашу команду как продакшн на долгий срок?',
+      answer: 'Да. Формат Growth Care — выделяем команду, планируем задачи поквартально и раз в месяц показываем отчёт.'
+    },
+    {
+      question: 'Вы работаете только с Astro?',
+      answer: 'Astro — базовый стек. Но при необходимости подключаем React-компоненты, Trpc, edge-функции и сторонние SDK.'
+    }
+  ]
+};
 ---
 
-<BaseLayout title="my-site — быстрый старт на Astro" description="Минимальный Astro 4 каркас с layout, секциями и готовым Supabase .env.">
-  <section class="hero">
-    <p class="eyebrow">Astro · TypeScript · Supabase</p>
-    <h1>
-      Каркас под ваш будущий лендинг: быстро, без мусора и готово к масштабированию.
-    </h1>
-    <p class="lead">
-      Собран минимальный стек: dev-сервер на pnpm, компоненты вынесены, структура повторяет
-      будущую продовую кодовую базу.
-    </p>
-    <div class="actions">
-      <a class="primary" href="#contact">Запустить проект</a>
-      <a class="secondary" href="#process">Смотреть процесс</a>
-    </div>
-  </section>
-
-  <section id="services" class="grid">
-    {highlights.map((item) => (
-      <article>
-        <p class="label">{item.title}</p>
-        <p>{item.body}</p>
-      </article>
-    ))}
-  </section>
-
-  <section id="process" class="split">
-    <div>
-      <p class="eyebrow">Как дальше работаем</p>
-      <h2>Сначала observable скелет, потом подключаем Supabase и UI.</h2>
-      <p class="muted">
-        Этот репозиторий — стартовая площадка: разворачиваете pnpm dev, правите секции и подключаете
-        нужные интеграции по чек-листу ниже.
-      </p>
-    </div>
-    <ul>
-      {checklist.map((item) => (
-        <li>{item}</li>
-      ))}
-    </ul>
-  </section>
+<BaseLayout
+  title="my-site — AI-агентство полного цикла"
+  description="Astro-лендинг в стиле veonix x syntx.ai: hero, кейсы, тарифы, FAQ."
+>
+  <Hero {...hero} />
+  <Features {...featureSection} />
+  <Capabilities {...capabilities} />
+  <CaseStudies {...cases} />
+  <Pricing {...plans} />
+  <Testimonials {...testimonials} />
+  <FAQ {...faq} />
 </BaseLayout>
-
-<style>
-  .hero {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.65);
-  }
-
-  h1 {
-    font-size: clamp(2.4rem, 4vw, 3.7rem);
-    line-height: 1.1;
-    margin: 0;
-  }
-
-  .lead {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-
-  .primary,
-  .secondary {
-    padding: 0.85rem 1.5rem;
-    border-radius: 999px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-
-  .primary {
-    background: linear-gradient(135deg, #4f46e5, #06b6d4);
-    box-shadow: 0 10px 40px rgba(15, 15, 40, 0.45);
-  }
-
-  .secondary {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  article {
-    padding: 1.5rem;
-    border-radius: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.02);
-    box-shadow: 0 20px 50px rgba(5, 6, 12, 0.4);
-  }
-
-  .label {
-    font-weight: 600;
-    margin-bottom: 0.35rem;
-  }
-
-  .split {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    align-items: start;
-    padding: 2rem;
-    border-radius: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(9, 9, 20, 0.65);
-  }
-
-  .muted {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  li {
-    padding-left: 1.5rem;
-    position: relative;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: #38bdf8;
-  }
-</style>
