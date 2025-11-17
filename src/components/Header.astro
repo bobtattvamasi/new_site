@@ -1,0 +1,83 @@
+---
+const links = [
+  { href: '#services', label: 'Услуги' },
+  { href: '#cases', label: 'Кейсы' },
+  { href: '#process', label: 'Процесс' }
+];
+---
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="/">my-site</a>
+    <nav>
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <a class="cta" href="#contact">Связаться</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(8, 8, 18, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .logo {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #f8f8ff;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+
+  nav a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.15s ease;
+  }
+
+  nav a:hover {
+    color: #fff;
+  }
+
+  .cta {
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .cta:hover {
+    background: #fff;
+    color: #080812;
+  }
+
+  @media (max-width: 720px) {
+    nav {
+      display: none;
+    }
+  }
+</style>
